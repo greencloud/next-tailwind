@@ -3,24 +3,58 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+    border: none
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: #fafafa;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+header {
+    background: #fff;
+    padding: 32px 20px;
+    width: 100%
+}
+.header .brand {
+    width: 50%
+}
+.header .navigation {
+    width: 50%
+}
+
+footer {
+    background: #fff
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace
+}
+
+.banner {
+    background: #808080 url('/banner.webp') center bottom no-repeat;
+    background-size: cover;
+    max-height: 450px;
+    min-height: 360px
+}
+.banner-text {
+    color: #fff
+}
+.banner-text h2 {
+    font-size: 45px;
+    font-weight: 500;
+    font-style: normal
 }
