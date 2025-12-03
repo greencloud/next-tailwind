@@ -8,7 +8,6 @@ import Banner from '../components/Layout/Banner';
 import ButtonLink from '../components/Layout/CutomButtons';
 
 export default function Home() {
-
   const router = useRouter();
 
   return (

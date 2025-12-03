@@ -24,6 +24,14 @@ body {
     -moz-osx-font-smoothing: grayscale
 }
 
+input {
+    border: 1px solid #808080CD;
+    border-radius: 6px
+}
+input:after {
+    border: 1px solid transparent
+}
+
 header {
     background: #fff;
     padding: 32px 20px;

@@ -16,7 +16,7 @@ export const metadata = {
   description: "The quick brown fox jumps over the lazy dog.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: any) {
   return (
     <html lang="en">
       <body
