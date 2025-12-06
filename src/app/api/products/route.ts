@@ -37,7 +37,7 @@ export async function GET() {
 
   const apiRes = await fetch(`${process.env.API_URL}/api/all-products`, {
     headers: { 'x-api-jwt': process.env.API_JWT || '' },
-    next: { revalidate: 60 }
+    cache: 'no-store'
   });
 
   const end = performance.now();

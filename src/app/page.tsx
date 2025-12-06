@@ -11,7 +11,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div>
+    <>
       <Header />
       <Banner>
         <h2>NEXT.js + TS + Tailwind CSS</h2>
@@ -37,6 +37,6 @@ export default function Home() {
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 }
