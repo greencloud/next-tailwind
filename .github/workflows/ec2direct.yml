@@ -34,7 +34,7 @@ jobs:
           echo 'Installing dependencies...';
           npm install --production;
           echo 'Building Next.js app...';
-          npx next build;
+          npx next build && sleep 5;
           echo 'Restarting systemd service...';
           sudo systemctl restart mynextapp;
         "
