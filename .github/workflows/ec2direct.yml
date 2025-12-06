@@ -29,5 +29,6 @@ jobs:
         ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
           cd ${{ secrets.EC2_APP_DIR }};
           npm install --production;
+          npx next build;
           sudo systemctl restart mynextapp;
         "
