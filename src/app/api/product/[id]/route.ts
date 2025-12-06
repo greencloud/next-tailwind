@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+// Get specific product data
 export async function GET(req: Request, context: { params: Promise<{ id: string }> }) {
   const { id } = await context.params;
 
