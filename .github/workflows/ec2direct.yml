@@ -32,9 +32,9 @@ jobs:
         ssh -i /tmp/deploy_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
           cd ${{ secrets.EC2_APP_DIR }};
           echo 'Installing dependencies...';
-          npm install --production;
+          npm install --omit=dev;
           echo 'Building Next.js app...';
-          npx next build && sleep 5;
+          npx next build;
           echo 'Restarting systemd service...';
           sudo systemctl restart mynextapp;
         "
