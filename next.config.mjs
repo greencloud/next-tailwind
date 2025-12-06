@@ -1,14 +1,7 @@
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-export default {
-  experimental: {
-    turbopack: true,
-    turbopack: {
-      root: __dirname, // now __dirname works
-    },
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  /* config options here */
+  reactCompiler: true,
 };
+
+export default nextConfig;
