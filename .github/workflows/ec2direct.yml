@@ -9,26 +9,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # 1️⃣ Checkout the repository
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Install SSH Key
-      uses: webfactory/ssh-agent@v0.9.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    # 2️⃣ Write the private key to a temporary file
+    - name: Setup SSH Key
+      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/deploy_key.pem
+        chmod 600 /tmp/deploy_key.pem
 
+    # 3️⃣ Sync project files to EC2 using rsync over SSH
     - name: Copy project files to EC2
       run: |
         rsync -avz --delete \
-          -e "ssh -o StrictHostKeyChecking=no" \
-          ./ \
-          ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ secrets.EC2_APP_DIR }}
+          -e "ssh -i /tmp/deploy_key.pem -o StrictHostKeyChecking=no" \
+          ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ secrets.EC2_APP_DIR }}
 
-    - name: Install dependencies + restart app on EC2
+    # 4️⃣ Install dependencies, build app, and restart service on EC2
+    - name: Deploy and restart app on EC2
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
+        ssh -i /tmp/deploy_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
           cd ${{ secrets.EC2_APP_DIR }};
+          echo 'Installing dependencies...';
           npm install --production;
+          echo 'Building Next.js app...';
           npx next build;
+          echo 'Restarting systemd service...';
           sudo systemctl restart mynextapp;
         "
